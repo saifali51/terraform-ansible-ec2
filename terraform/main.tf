@@ -66,7 +66,7 @@ resource "aws_instance" "web" {
   instance_type = "t2.micro"
   subnet_id     = aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.ssh.id]
-  key_name      = var.key_name
+  key_name      = "jenkins"
 
   tags = {
     Name = "web-instance"
