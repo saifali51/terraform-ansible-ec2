@@ -33,10 +33,14 @@ pipeline {
       }
     }
 
-    stage('Run Ansible Playbook') {
-      steps {
-         sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/playbook.yml' 
-      }
+   stage('Run Ansible Playbook') {
+  steps {
+    withCredentials([sshUserPrivateKey(credentialsId: 'my-ec2-key', keyFileVariable: 'SSH_KEY')]) {
+      sh '''
+        echo "[ec2] $(cat ansible/hosts)" > ansible/hosts
+        ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/playbook.yml \
+          --private-key=$SSH_KEY
+      '''
     }
   }
 }
