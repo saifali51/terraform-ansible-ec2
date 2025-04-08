@@ -28,7 +28,7 @@ pipeline {
       steps {
         script {
           def ip = sh(script: "cd terraform && terraform output -raw public_ip", returnStdout: true).trim()
-          writeFile file: 'ansible/hosts', text: "${ip} ansible_user=ec2-user ansible_ssh_private_key_file=.ssh/jenkins.pem" 
+          writeFile file: 'ansible/hosts', text: "${ip} ansible_user=ec2-user ansible_ssh_private_key_file=jenkins.pem" 
         }
       }
     }
