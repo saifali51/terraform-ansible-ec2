@@ -8,7 +8,6 @@ pipeline {
   stages {
     stage('Terraform Init') {
       steps {
-        withCredentials([id: 'your-credential-id']) {
           dir('terraform') {
             sh 'terraform init'
           }
