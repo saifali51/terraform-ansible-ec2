@@ -3,6 +3,7 @@ pipeline {
 
   tools {
     terraform 'terraform-iti'
+    ansible 'ansible-iti'
   }
 
   stages {
