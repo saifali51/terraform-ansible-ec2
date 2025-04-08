@@ -35,7 +35,7 @@ pipeline {
 
     stage('Run Ansible Playbook') {
       steps {
-        sh 'ansible-playbook -i ansible/hosts ansible/playbook.yml'
+         sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts ansible/playbook.yml' }
       }
     }
   }
